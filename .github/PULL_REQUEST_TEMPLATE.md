@@ -4,13 +4,11 @@
 
 ## Cómo se ha probado
 
-- [ ] `pnpm check` en local
-- [ ] Migración nueva: `pnpm db:reset && pnpm db:test`
-- [ ] Contenido nuevo: `pnpm content:validate`
+- [ ] `npm run check` en local
+- [ ] `npm run test:e2e` si el cambio afecta a la UI, la PWA o el service worker
 
 ## Checklist
 
-- [ ] UI: verificado en móvil (< 640 px), tablet (640–1024 px) y escritorio (> 1024 px)
-- [ ] Sin secretos ni claves `service_role` en el cliente
-- [ ] Tablas nuevas con `academy_id`, RLS activada y test de aislamiento
-- [ ] Docs/README actualizados si cambia un script, variable de entorno o flujo
+- [ ] UI revisada en móvil (< 640 px), tablet (640–1024 px) y escritorio (> 1024 px)
+- [ ] Sin secretos en el código ni en variables `VITE_*`
+- [ ] README y `.env.example` actualizados si cambia un script o una variable de entorno

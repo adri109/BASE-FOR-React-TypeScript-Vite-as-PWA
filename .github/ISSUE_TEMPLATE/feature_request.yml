@@ -1,5 +1,5 @@
-name: Funcionalidad
-description: Propuesta de cambio o mejora
+name: Mejora
+description: Propuesta de cambio o mejora de la plantilla
 labels: [enhancement]
 body:
   - type: textarea

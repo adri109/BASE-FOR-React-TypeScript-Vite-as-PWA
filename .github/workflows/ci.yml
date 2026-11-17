@@ -19,40 +19,20 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
-
-      - name: Format
-        run: pnpm format:check
-
-      - name: Lint
-        run: pnpm lint
-
-      - name: Typecheck
-        run: pnpm typecheck
-
-      - name: Content (validación + esquemas JSON al día)
-        run: |
-          pnpm content:validate
-          pnpm content:schema:check
-
-      - name: Unit tests
-        run: pnpm test
-
-      - name: Build
-        run: pnpm build
-
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
-          name: web-dist
-          path: apps/web/dist
+          name: dist
+          path: dist
           retention-days: 7
 
   e2e:
@@ -62,34 +42,47 @@ jobs:
     needs: check
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm content:build
-      - run: pnpm --filter @app/web exec playwright install --with-deps chromium
-      - run: pnpm test:e2e
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: playwright-report
-          path: apps/web/playwright-report
+          path: playwright-report
           retention-days: 7
 
-  database:
-    name: Supabase (migraciones, lint y tests RLS)
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: supabase/setup-cli@v1
-        with:
-          version: latest
-      - name: Start local stack (solo Postgres)
-        run: supabase db start
-      - name: Lint schema
-        run: supabase db lint --level warning --fail-on error
-      - name: RLS tests (pgTAP)
-        run: supabase test db
+# Despliegue opcional a Cloudflare Pages. Para activarlo:
+#   1. Crea el proyecto en Cloudflare Pages (modo "Direct Upload").
+#   2. Añade los secretos CLOUDFLARE_API_TOKEN y CLOUDFLARE_ACCOUNT_ID y la
+#      variable de repositorio CLOUDFLARE_PAGES_PROJECT.
+#   3. Descomenta el job y pon `needs: [check, e2e]` si quieres desplegar solo con todo en verde.
+# Si conectas el repositorio directamente desde el panel de Cloudflare, Vercel o
+# Netlify no necesitas este job.
+#
+#  deploy:
+#    name: Deploy (Cloudflare Pages)
+#    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#    needs: [check, e2e]
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 15
+#    permissions:
+#      contents: read
+#      deployments: write
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version-file: .nvmrc
+#          cache: npm
+#      - run: npm ci
+#      - run: npm run build
+#      - uses: cloudflare/wrangler-action@v3
+#        with:
+#          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+#          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+#          command: pages deploy dist --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
