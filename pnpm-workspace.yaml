@@ -1,8 +1,0 @@
-packages:
-  - apps/*
-  - packages/*
-  - tools/*
-
-onlyBuiltDependencies:
-  - esbuild
-  - supabase
