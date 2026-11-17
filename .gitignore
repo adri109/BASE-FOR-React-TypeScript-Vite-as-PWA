@@ -1,0 +1,37 @@
+node_modules/
+dist/
+coverage/
+.turbo/
+*.tsbuildinfo
+
+# Paquetes de contenido generados (pnpm content:build)
+apps/web/public/content/
+
+# env
+.env
+.env.*
+!.env.example
+
+# Playwright
+playwright-report/
+test-results/
+blob-report/
+.cache/
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+supabase/.env
+
+# Cloudflare / wrangler
+.wrangler/
+.dev.vars
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.log
+*.tgz
