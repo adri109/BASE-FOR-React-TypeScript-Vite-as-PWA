@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=../../schema/exercises.schema.json
+theme: b2-third-conditional
+exercises:
+  - id: q1
+    type: multiple_choice
+    prompt: If she ___ earlier, she wouldn't have missed the bus.
+    options: [left, had left, would have left]
+    answer: 1
+  - id: q2
+    type: fill_blank
+    prompt: Complete the sentence.
+    sentence: If I had seen the sign, I ___ have stopped.
+    accepted: [would]
+  - id: q3
+    type: reorder
+    prompt: Put the words in order.
+    words: [If, they, had, called, we, would, have, helped]

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=../../schema/exercises.schema.json
+theme: b2-phrasal-verbs-work
+exercises:
+  - id: q1
+    type: multiple_choice
+    prompt: The meeting was ___ until next week.
+    options: [put off, put up, put out]
+    answer: 0
+    explanation: 'put off = aplazar.'
+  - id: q2
+    type: fill_blank
+    prompt: Complete with a particle.
+    sentence: She took ___ the project when her manager left.
+    accepted: [over]

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../../schema/theme.schema.json
+id: b1-first-conditional
+level: B1
+branch: grammar
+title: First conditional
+summary: Situaciones futuras posibles - if + presente simple, will + infinitivo.
+prerequisites: []
+explanation: |
+  Se usa para hablar de una condición real o posible en el futuro.
+
+  Estructura: **if + present simple**, **will + infinitive**.
+  El orden de las cláusulas es intercambiable; con la condición al final no se escribe coma.
+commonErrors:
+  - wrong: If I will have time, I will call you.
+    right: If I have time, I will call you.
+    note: Tras "if" no se usa "will" en la condición (en español sí se usaría futuro o subjuntivo).
+  - wrong: If it will rain, we stay at home.
+    right: If it rains, we will stay at home.

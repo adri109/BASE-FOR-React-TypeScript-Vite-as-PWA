@@ -1,0 +1,24 @@
+{
+  "name": "@app/content-build",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "tsx src/cli.ts validate",
+    "schema": "tsx src/cli.ts schema",
+    "schema:check": "tsx src/cli.ts schema --check",
+    "emit": "tsx src/cli.ts build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@app/shared": "workspace:*",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.23.15",
+    "vitest": "^5.1.0"
+  }
+}

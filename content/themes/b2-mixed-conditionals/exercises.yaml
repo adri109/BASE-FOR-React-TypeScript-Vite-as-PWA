@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=../../schema/exercises.schema.json
+theme: b2-mixed-conditionals
+exercises:
+  - id: q1
+    type: multiple_choice
+    prompt: If I ___ the job, I would be living in Berlin now.
+    options: [took, had taken, would take]
+    answer: 1
+  - id: q2
+    type: fill_blank
+    prompt: Complete the sentence.
+    sentence: If he had saved more, he ___ be richer today.
+    accepted: [would]
