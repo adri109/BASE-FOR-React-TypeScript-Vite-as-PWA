@@ -1,0 +1,49 @@
+{
+  "name": "app-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo template: React + Vite PWA, PixiJS map, Supabase, YAML content pipeline.",
+  "type": "module",
+  "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=10"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @app/web dev",
+    "build": "pnpm content:build && pnpm --filter @app/web build",
+    "preview": "pnpm --filter @app/web preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm --filter @app/web test:e2e",
+    "content:validate": "pnpm --filter @app/content-build validate",
+    "content:schema": "pnpm --filter @app/content-build schema",
+    "content:schema:check": "pnpm --filter @app/content-build schema:check",
+    "content:build": "pnpm --filter @app/content-build emit",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:status": "supabase status",
+    "db:reset": "supabase db reset",
+    "db:lint": "supabase db lint",
+    "db:test": "supabase test db",
+    "db:migration": "supabase migration new",
+    "db:types": "supabase gen types typescript --local > packages/shared/src/database.types.ts",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm content:validate && pnpm test && pnpm build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.15.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.8",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1",
+    "supabase": "^3.2.0",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.73.0"
+  }
+}
