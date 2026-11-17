@@ -8,14 +8,12 @@ import prettier from 'eslint-config-prettier';
 export default tseslint.config(
   {
     ignores: [
-      '**/node_modules/**',
-      '**/dist/**',
-      '**/dev-dist/**',
-      '**/coverage/**',
-      '**/playwright-report/**',
-      '**/test-results/**',
-      'apps/web/public/content/**',
-      'content/schema/**',
+      'node_modules/**',
+      'dist/**',
+      'dev-dist/**',
+      'coverage/**',
+      'playwright-report/**',
+      'test-results/**',
     ],
   },
   js.configs.recommended,
@@ -27,7 +25,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['apps/web/**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
     languageOptions: { globals: globals.browser },
     plugins: { 'react-hooks': reactHooks, 'react-refresh': reactRefresh },
     rules: {
@@ -36,13 +34,7 @@ export default tseslint.config(
     },
   },
   {
-    files: [
-      'tools/**/*.ts',
-      'apps/web/scripts/**/*.mjs',
-      '*.config.{js,ts}',
-      'apps/web/*.config.ts',
-      'apps/web/e2e/**/*.ts',
-    ],
+    files: ['scripts/**/*.mjs', 'e2e/**/*.ts', '*.config.{js,ts}'],
     languageOptions: { globals: globals.node },
   },
   prettier,

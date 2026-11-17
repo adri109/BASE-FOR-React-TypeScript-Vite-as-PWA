@@ -1,0 +1,184 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --border: #334155;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-text: #0c4a6e;
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --gap: 1rem;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+code {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--surface);
+  font-size: 0.9em;
+}
+
+.page {
+  min-height: 100dvh;
+  padding: var(--gap);
+  /* Respeta el notch y la barra de gestos en iOS/Android con viewport-fit=cover. */
+  padding-left: max(var(--gap), env(safe-area-inset-left));
+  padding-right: max(var(--gap), env(safe-area-inset-right));
+  padding-bottom: max(var(--gap), env(safe-area-inset-bottom));
+}
+
+.header,
+.content {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-bottom: var(--gap);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.status::before {
+  content: '';
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.4rem;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+.status[data-online='false']::before {
+  background: var(--warn);
+}
+
+.card,
+.toast {
+  padding: var(--gap);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.card p,
+.toast p {
+  margin: 0 0 var(--gap);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.button {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--accent);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+}
+
+.toast {
+  position: fixed;
+  right: max(var(--gap), env(safe-area-inset-right));
+  bottom: max(var(--gap), env(safe-area-inset-bottom));
+  left: max(var(--gap), env(safe-area-inset-left));
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  :root {
+    --gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+  }
+
+  .header {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .actions {
+    flex-direction: row;
+  }
+
+  .toast {
+    left: auto;
+    width: 22rem;
+  }
+}
+
+/* Escritorio */
+@media (min-width: 1024px) {
+  :root {
+    --gap: 2rem;
+  }
+
+  .page {
+    padding-top: 3rem;
+  }
+}

@@ -1,8 +1,4 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "yaml.schemas": {
-    "./content/schema/theme.schema.json": "content/themes/*/theme.yaml",
-    "./content/schema/exercises.schema.json": "content/themes/*/exercises.yaml"
-  }
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
