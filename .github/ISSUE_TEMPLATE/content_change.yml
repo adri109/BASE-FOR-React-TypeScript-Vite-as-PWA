@@ -1,0 +1,19 @@
+name: Contenido
+description: Corrección o nuevo tema/ejercicio
+labels: [content]
+body:
+  - type: input
+    id: theme
+    attributes:
+      label: Tema (id)
+      placeholder: b2-third-conditional
+    validations: { required: true }
+  - type: textarea
+    id: change
+    attributes:
+      label: Cambio propuesto
+    validations: { required: true }
+  - type: textarea
+    id: source
+    attributes:
+      label: Fuente o justificación

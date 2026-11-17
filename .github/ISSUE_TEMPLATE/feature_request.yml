@@ -1,0 +1,19 @@
+name: Funcionalidad
+description: Propuesta de cambio o mejora
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema
+      description: Qué no se puede hacer hoy y por qué importa.
+    validations: { required: true }
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+    validations: { required: true }
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas descartadas
